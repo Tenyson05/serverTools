@@ -9,7 +9,7 @@ host = socket.gethostname()
 port = 444
 
 # Subsititue the host with the server IP
-clientSocket.connect(('192.169.1.106', port))
+clientSocket.connect(('192.169.1.107', port))
 
 #Receiving a maximum of 1024 bytes
 message = clientSocket.recv(1024)

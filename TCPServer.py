@@ -13,7 +13,7 @@ host = socket.gethostname()
 print(host)
 
 # Port to listen on
-port = 44
+port = 444
 
 #Binding to socket
 serverSocket.bind((host, port))
@@ -25,7 +25,7 @@ while True:
 	# Starting the connection
 	clientSocket, address = serverSocket.accept()
 
-	print("Received connection from %s",  str(address))
+	print("Received connection from: ",  str(address))
 
 	# Message sent to client after successful connection
 	message = "Hello! Thank you for connection to the server" + "\r\n"
