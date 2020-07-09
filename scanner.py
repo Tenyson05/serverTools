@@ -2,8 +2,10 @@
 
 
 import nmap
+import socket
 
 scanner = nmap.PortScanner()
+s = socket.socket()
 
 print("Welcome, this is a simple nmap automation tool")
 print("Using nmap version", scanner.nmap_version())
@@ -24,18 +26,24 @@ if resp == '1':
 	print(scanner.scaninfo())
 	print("IP Status: ", scanner[ip_addr].state())
 	print(scanner[ip_addr].all_protocols())
-	print("Open Ports: ", scanner[ip_addr].all_tcp())
+	scannedPorts = scanner[ip_addr].all_tcp()
+	for i in range(len(scannedPorts)):
+		print("tcp/" + str(scannedPorts[i]))
 if resp == '2':
 	scanner.scan(ip_addr, '1-1024', '-v -sU')
 	print(scanner.scaninfo())
 	print("IP Status: ", scanner[ip_addr].state())
 	print(scanner[ip_addr].all_protocols())
-	print("Open Ports: ", scanner[ip_addr].all_udp())
+	scannedPorts = scanner[ip_addr].all_udp()
+	for i in range(len(scannedPorts)):
+		print("udp/" + str(scannedPorts[i]))
 if resp == '3':
 	scanner.scan(ip_addr, '1-1024', '-v -sS -sV -sC -A -O')
 	print(scanner.scaninfo())
 	print("IP Status: ", scanner[ip_addr].state())
 	print(scanner[ip_addr].all_protocols())
-	print("Open Ports: ", scanner[ip_addr].all_tcp())
+	scannedPorts = scanner[ip_addr].all_tcp()
+	for i in range(len(scannedPorts)):
+		print("tcp/" + str(scannedPorts[i]))
 elif resp >= '4':
-	print("Please enter a valid option")
+	print("Please enter a valid option")	
